@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Choose Ancient Herbal Spa - Redesigned Showcase</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            spa: {
+              cream: '#F9F6F0',
+              linen: '#F1ECE1',
+              darkGreen: '#12221D',
+              forest: '#1B332B',
+              gold: '#D4AF37',
+              warmGold: '#C5A059',
+              goldLight: '#E6C98F',
+              sage: '#8FA89B',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Luxury Styles */
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Gentle ambient background glow animation */
+    @keyframes floatOrb {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-20px) scale(1.1); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+    
+    .ambient-orb {
+      animation: floatOrb 8s ease-in-out infinite;
+      filter: blur(120px);
+    }
+    
+    .ambient-orb-delayed {
+      animation: floatOrb 11s ease-in-out infinite;
+      animation-delay: 2s;
+      filter: blur(140px);
+    }
+
+    /* Shimmer effect for premium card hovers */
+    .shimmer-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+      );
+      transition: 0.8s;
+    }
+    .dark .shimmer-card::before {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212, 175, 55, 0.05),
+        transparent
+      );
+    }
+    .shimmer-card:hover::before {
+      left: 150%;
+    }
+
+    /* Elegant Custom Scrollbar for Drawer */
+    .custom-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #C5A059;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-spa-cream text-spa-forest dark:bg-spa-darkGreen dark:text-spa-cream overflow-x-hidden min-h-screen">
+
+  <!-- Interactive Demo Header / Controls -->
+  <div class="fixed top-4 right-4 z-50 flex items-center gap-3 bg-white/40 dark:bg-spa-forest/40 backdrop-blur-md py-2 px-3 rounded-full border border-spa-sage/20 dark:border-spa-gold/10 shadow-lg">
+    <span class="text-xs font-semibold tracking-wider uppercase text-spa-forest/70 dark:text-spa-cream/70 select-none">Spa Mood:</span>
+    <button id="themeToggle" class="p-2 rounded-full bg-spa-forest dark:bg-spa-gold text-spa-cream dark:text-spa-darkGreen shadow transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center w-8 h-8 focus:outline-none" aria-label="Toggle Spa Mood">
+      <!-- Sun Icon (Active when dark is on) -->
+      <svg id="sunIcon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 17.95a1 1 0 01-1.414-1.414l.707-.707a1 1 0 111.414 1.414l-.707.707zm1.414-14.14a1 1 0 11-1.414 1.414L4.34 4.5a1 1 0 011.414-1.414l.707.707zM4 10a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+      <!-- Moon Icon (Active when light is on) -->
+      <svg id="moonIcon" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+    </button>
+  </div>
+
+  <!-- Ambient Glowing Background Elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] max-w-[500px] bg-spa-sage/10 dark:bg-spa-forest/20 rounded-full ambient-orb"></div>
+    <div class="absolute bottom-[20%] right-[10%] w-[45vw] h-[45vw] max-w-[600px] bg-spa-gold/5 dark:bg-spa-gold/5 rounded-full ambient-orb-delayed"></div>
+  </div>
+
+  <!-- Redesigned Main Section -->
+  <section class="relative py-24 px-4 sm:px-6 lg:px-8 z-10 max-w-7xl mx-auto flex flex-col justify-center min-h-screen">
+    
+    <!-- Section Header with Ornamental Detail -->
+    <div class="text-center mb-20 relative">
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <span class="w-8 h-[1px] bg-spa-gold/60 dark:bg-spa-gold"></span>
+        <span class="text-xs uppercase tracking-[0.3em] text-spa-warmGold font-semibold">The Sanctuary Standard</span>
+        <span class="w-8 h-[1px] bg-spa-gold/60 dark:bg-spa-gold"></span>
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-spa-forest dark:text-spa-cream mb-6 leading-tight max-w-3xl mx-auto">
+        Why Choose <span class="italic font-normal text-spa-warmGold">Ancient Herbal Spa</span>
+      </h2>
+      
+      <!-- Elegant botanical ornament divider -->
+      <div class="flex justify-center items-center my-6 opacity-80 dark:opacity-100">
+        <svg class="w-16 h-8 text-spa-warmGold" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 100 40">
+          <path d="M50,30 C30,30 20,20 10,25" />
+          <path d="M50,30 C70,30 80,20 90,25" />
+          <circle cx="50" cy="30" r="3" fill="currentColor" />
+          <path d="M40,25 C45,20 48,22 50,30" />
+          <path d="M60,25 C55,20 52,22 50,30" />
+        </svg>
+      </div>
+
+      <p class="text-lg md:text-xl font-light text-spa-forest/80 dark:text-spa-cream/80 max-w-2xl mx-auto leading-relaxed">
+        We bridge the path between ancestral herbal wisdom and immersive modern design to restore equilibrium to your body, mind, and spirit.
+      </p>
+    </div>
+
+    <!-- Aesthetic Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Feature Card 1: Sacred Recipes -->
+      <div onclick="openRitual(1)" class="shimmer-card group relative overflow-hidden bg-white/40 dark:bg-spa-forest/40 backdrop-blur-md rounded-3xl p-8 border border-spa-sage/20 dark:border-spa-gold/10 hover:border-spa-gold/50 dark:hover:border-spa-gold transition-all duration-500 hover:-translate-y-2 cursor-pointer shadow-sm hover:shadow-2xl flex flex-col justify-between h-[360px]">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-spa-linen/10 dark:to-spa-darkGreen/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div>
+          <!-- Botanical Herb Icon -->
+          <div class="w-14 h-14 rounded-2xl bg-spa-linen dark:bg-spa-darkGreen/60 flex items-center justify-center text-spa-warmGold mb-8 group-hover:scale-110 group-hover:bg-spa-gold/10 transition-all duration-500">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 12m0-9c4.97 0 9 4.03 9 9 0 2.12-.74 4.07-1.97 5.61L12 12" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-serif font-bold mb-3 tracking-wide text-spa-forest dark:text-spa-cream group-hover:text-spa-warmGold transition-colors duration-300">
+            Sacred Botanicals
+          </h3>
+          <p class="text-sm font-light leading-relaxed text-spa-forest/70 dark:text-spa-cream/70">
+            Hand-harvested dynamic herbs steeped carefully based on secret ancient lineages.
+          </p>
+        </div>
+        
+        <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-spa-warmGold font-semibold mt-4">
+          <span>Explore Ritual</span>
+          <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </div>
+      </div>
+
+      <!-- Feature Card 2: Lineage Touch -->
+      <div onclick="openRitual(2)" class="shimmer-card group relative overflow-hidden bg-white/40 dark:bg-spa-forest/40 backdrop-blur-md rounded-3xl p-8 border border-spa-sage/20 dark:border-spa-gold/10 hover:border-spa-gold/50 dark:hover:border-spa-gold transition-all duration-500 hover:-translate-y-2 cursor-pointer shadow-sm hover:shadow-2xl flex flex-col justify-between h-[360px]">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-spa-linen/10 dark:to-spa-darkGreen/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div>
+          <!-- Holistic Touch/Hands Icon -->
+          <div class="w-14 h-14 rounded-2xl bg-spa-linen dark:bg-spa-darkGreen/60 flex items-center justify-center text-spa-warmGold mb-8 group-hover:scale-110 group-hover:bg-spa-gold/10 transition-all duration-500">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7h7m-7 0a3 3 0 11-6 0 3 3 0 016 0zM9 11a3 3 0 106 0M4 15h.01M4 9h.01" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-serif font-bold mb-3 tracking-wide text-spa-forest dark:text-spa-cream group-hover:text-spa-warmGold transition-colors duration-300">
+            Lineage Massage
+          </h3>
+          <p class="text-sm font-light leading-relaxed text-spa-forest/70 dark:text-spa-cream/70">
+            Every pressure point traced with rhythmic traditions taught across centuries.
+          </p>
+        </div>
+        
+        <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-spa-warmGold font-semibold mt-4">
+          <span>Explore Ritual</span>
+          <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </div>
+      </div>
+
+      <!-- Feature Card 3: Acoustic & Sensory Cocoon -->
+      <div onclick="openRitual(3)" class="shimmer-card group relative overflow-hidden bg-white/40 dark:bg-spa-forest/40 backdrop-blur-md rounded-3xl p-8 border border-spa-sage/20 dark:border-spa-gold/10 hover:border-spa-gold/50 dark:hover:border-spa-gold transition-all duration-500 hover:-translate-y-2 cursor-pointer shadow-sm hover:shadow-2xl flex flex-col justify-between h-[360px]">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-spa-linen/10 dark:to-spa-darkGreen/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div>
+          <!-- Sound/Temple Bowl Icon -->
+          <div class="w-14 h-14 rounded-2xl bg-spa-linen dark:bg-spa-darkGreen/60 flex items-center justify-center text-spa-warmGold mb-8 group-hover:scale-110 group-hover:bg-spa-gold/10 transition-all duration-500">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-serif font-bold mb-3 tracking-wide text-spa-forest dark:text-spa-cream group-hover:text-spa-warmGold transition-colors duration-300">
+            Acoustic Sanctum
+          </h3>
+          <p class="text-sm font-light leading-relaxed text-spa-forest/70 dark:text-spa-cream/70">
+            Soundscapes carefully calibrated to align with alpha-brainwave meditation modes.
+          </p>
+        </div>
+        
+        <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-spa-warmGold font-semibold mt-4">
+          <span>Explore Ritual</span>
+          <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </div>
+      </div>
+
+      <!-- Feature Card 4: Eco Alchemy -->
+      <div onclick="openRitual(4)" class="shimmer-card group relative overflow-hidden bg-white/40 dark:bg-spa-forest/40 backdrop-blur-md rounded-3xl p-8 border border-spa-sage/20 dark:border-spa-gold/10 hover:border-spa-gold/50 dark:hover:border-spa-gold transition-all duration-500 hover:-translate-y-2 cursor-pointer shadow-sm hover:shadow-2xl flex flex-col justify-between h-[360px]">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-spa-linen/10 dark:to-spa-darkGreen/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div>
+          <!-- Sustainable Earth Icon -->
+          <div class="w-14 h-14 rounded-2xl bg-spa-linen dark:bg-spa-darkGreen/60 flex items-center justify-center text-spa-warmGold mb-8 group-hover:scale-110 group-hover:bg-spa-gold/10 transition-all duration-500">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-serif font-bold mb-3 tracking-wide text-spa-forest dark:text-spa-cream group-hover:text-spa-warmGold transition-colors duration-300">
+            Earthen Architecture
+          </h3>
+          <p class="text-sm font-light leading-relaxed text-spa-forest/70 dark:text-spa-cream/70">
+            Thermal suites structured with local clay, water channels, and zero toxin materials.
+          </p>
+        </div>
+        
+        <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-spa-warmGold font-semibold mt-4">
+          <span>Explore Ritual</span>
+          <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live Spa Philosophy Statement -->
+    <div class="mt-20 border-t border-spa-sage/20 dark:border-spa-gold/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-3 h-3 rounded-full bg-spa-warmGold animate-ping"></div>
+        <span class="text-sm tracking-wide font-light text-spa-forest/60 dark:text-spa-cream/60">Now serving organic seasonal infusions & winter solstice bath treatments.</span>
+      </div>
+      <a href="#booking" class="group flex items-center gap-3 bg-spa-forest text-spa-cream dark:bg-spa-gold dark:text-spa-darkGreen font-semibold text-sm tracking-widest uppercase px-8 py-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300">
+        Secure Your Experience
+        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Sliding Interactive Ritual Panel (Detailed Drawer) -->
+  <div id="ritualDrawer" class="fixed inset-y-0 right-0 z-50 w-full sm:w-[480px] bg-spa-cream dark:bg-spa-forest shadow-2xl translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] border-l border-spa-sage/10 dark:border-spa-gold/10 flex flex-col justify-between">
+    
+    <!-- Drawer Head -->
+    <div class="p-8 border-b border-spa-sage/20 dark:border-spa-gold/15 flex justify-between items-center">
+      <div class="flex flex-col">
+        <span class="text-xs uppercase tracking-widest text-spa-warmGold font-bold">Ritual Details</span>
+        <h4 id="drawerTitle" class="text-3xl font-serif font-bold text-spa-forest dark:text-spa-cream mt-1">Sacred Botanicals</h4>
+      </div>
+      <button onclick="closeRitual()" class="w-10 h-10 rounded-full border border-spa-sage/20 dark:border-spa-gold/20 hover:border-spa-warmGold dark:hover:border-spa-gold flex items-center justify-center text-spa-forest dark:text-spa-cream hover:rotate-90 transition-all duration-300">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Drawer Dynamic Content -->
+    <div class="p-8 flex-1 overflow-y-auto custom-scroll space-y-8">
+      <div class="space-y-4">
+        <span class="text-xs uppercase tracking-widest font-semibold text-spa-warmGold">Sensory Signature</span>
+        <p id="drawerSensory" class="text-base font-light italic leading-relaxed text-spa-forest/80 dark:text-spa-cream/80">
+          "Notes of dry cedarwood, pressed wild chamomile, and pure copper-distilled pine."
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <span class="text-xs uppercase tracking-widest font-semibold text-spa-warmGold">Ancient Heritage Story</span>
+        <p id="drawerDescription" class="text-sm font-light leading-relaxed text-spa-forest/80 dark:text-spa-cream/80">
+          Dating back to the 7th-century mountain sanctuaries, this treatment utilizes specific thermal extraction recipes to activate resting cells. Organic flowers are infused under moonlit cold-press cycles to secure their absolute molecular healing vitality.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <span class="text-xs uppercase tracking-widest font-semibold text-spa-warmGold">Elevating Benefits</span>
+        <ul id="drawerBenefits" class="space-y-3 text-sm font-light text-spa-forest/80 dark:text-spa-cream/80">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-spa-warmGold shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span>Intense cellular oxygenation and toxic release.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-spa-warmGold shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span>Direct deep-tissue calming using high-concentration beta-myrcene.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-spa-warmGold shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span>Holistic nervous alignment via natural volatile root blends.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Live Interactive Treatment Reservation Prompt -->
+      <div class="bg-spa-linen/50 dark:bg-spa-darkGreen/50 p-6 rounded-2xl border border-spa-sage/10 dark:border-spa-gold/10 space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <span class="text-xs font-semibold uppercase text-spa-forest/60 dark:text-spa-cream/60 block">Ritual Duration</span>
+            <span id="drawerDuration" class="text-lg font-serif font-bold text-spa-forest dark:text-spa-cream">90 Minutes</span>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-semibold uppercase text-spa-forest/60 dark:text-spa-cream/60 block">Energy Guide</span>
+            <span id="drawerGuide" class="text-lg font-serif font-bold text-spa-forest dark:text-spa-cream">Apothecary Master</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Action Footer -->
+    <div class="p-8 border-t border-spa-sage/20 dark:border-spa-gold/15 bg-spa-linen/20 dark:bg-spa-darkGreen/25 flex flex-col gap-3">
+      <button onclick="bookSelected()" class="w-full bg-spa-forest text-spa-cream dark:bg-spa-gold dark:text-spa-darkGreen py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-xl">
+        Book This Ritual
+      </button>
+      <button onclick="closeRitual()" class="w-full text-center py-2 text-xs uppercase tracking-widest text-spa-forest/60 dark:text-spa-cream/60 hover:text-spa-warmGold transition-colors font-medium">
+        Go Back To Features
+      </button>
+    </div>
+  </div>
+
+  <!-- Custom Backdrop Cover -->
+  <div id="drawerBackdrop" onclick="closeRitual()" class="fixed inset-0 bg-black/30 dark:bg-black/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-500"></div>
+
+  <!-- Dynamic Notification / Status Toast -->
+  <div id="statusToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-spa-forest text-spa-cream dark:bg-spa-gold dark:text-spa-darkGreen px-6 py-3 rounded-full text-sm font-semibold tracking-wide shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-500 flex items-center gap-2">
+    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <span id="toastMessage">Your ritual has been added to reservation list.</span>
+  </div>
+
+  <!-- Vanilla Javascript Implementation -->
+  <script>
+    // System Theme Syncing & Theme Toggle Logic
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+
+    // Default to dark mode for luxury aesthetic
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.remove('dark');
+      sunIcon.classList.add('hidden');
+      moonIcon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.add('dark');
+      sunIcon.classList.remove('hidden');
+      moonIcon.classList.add('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      }
+    });
+
+    // Content Object Mapping for Interactive Rituals
+    const ritualDetails = {
+      1: {
+        title: "Sacred Botanicals",
+        sensory: "“Distilled cold-mountain chamomile, dried marigold infusions, and fresh cypress steam.”",
+        desc: "Dating back to the 7th-century mountain sanctuaries, this treatment utilizes specific botanical extraction recipes to activate cellular resting phases. Organic herbs are hand-picked at precise phases of the cycle to secure absolute structural potency.",
+        benefits: [
+          "Intense biological skin-cell hydration and toxic removal.",
+          "Rapid deep-tissue calming using high-concentration beta-myrcene.",
+          "Holistic nervous system alignment via natural aromatic compounds."
+        ],
+        duration: "90 Minutes",
+        guide: "Apothecary Master"
+      },
+      2: {
+        title: "Lineage Massage",
+        sensory: "“Warm sesame seed oil, rich frankincense resins, and delicate sandalwood warmth.”",
+        desc: "An incredible deep body alignment designed to trace the pathways of dynamic somatic channels. These exact hand patterns have been curated and handed down across lineages of classical master massage practitioners to systematically ease extreme tension.",
+        benefits: [
+          "Restores joint alignment and unlocks structural tension nodes.",
+          "Reduces stress-related adrenaline by over 40% in clinical tests.",
+          "Gently increases metabolic flow and microvascular circulation."
+        ],
+        duration: "75 Minutes",
+        guide: "Somatic Lineage Master"
+      },
+      3: {
+        title: "Acoustic Sanctum",
+        sensory: "“Deep ancient singing bowls, soft temple chimes, and natural water channels.”",
+        desc: "Our therapeutic acoustic environment features pristine high-grade quartz and bronze sound arrays. These dynamic tones are carefully layered to synchronize your brainwave states directly into alpha and theta meditation modes, inducing sound-based cellular healing.",
+        benefits: [
+          "Resets stress-prone sympathetic responses and stabilizes mood.",
+          "Supports long-term deep sleep quality and sensory rest.",
+          "Increases subjective feelings of deep peace and clarity."
+        ],
+        duration: "60 Minutes",
+        guide: "Soundwave Alchemist"
+      },
+      4: {
+        title: "Earthen Architecture",
+        sensory: "“Natural sun-baked clay, mountain thermal pools, and fresh forest ozone.”",
+        desc: "Enjoy architectural excellence featuring negative-ion-charged local clay, non-toxic wood, and flowing thermal water loops. Designed systematically to mimic deep natural sanctuaries, allowing your body to discharge environmental static charges.",
+        benefits: [
+          "Provides a rare absolute shield against daily digital static waves.",
+          "Natural temperature contrasts enhance active metabolic renewal.",
+          "Pure mountain air flow ensures extreme lung oxygenation."
+        ],
+        duration: "120 Minutes",
+        guide: "Thermal Concierge"
+      }
+    };
+
+    // UI Drawer Handlers
+    const drawer = document.getElementById('ritualDrawer');
+    const backdrop = document.getElementById('drawerBackdrop');
+
+    function openRitual(id) {
+      const data = ritualDetails[id];
+      if (!data) return;
+
+      // Populate Drawer Content Dynamically
+      document.getElementById('drawerTitle').innerText = data.title;
+      document.getElementById('drawerSensory').innerText = data.sensory;
+      document.getElementById('drawerDescription').innerText = data.desc;
+      document.getElementById('drawerDuration').innerText = data.duration;
+      document.getElementById('drawerGuide').innerText = data.guide;
+
+      // Map out Benefits lists dynamically
+      const benefitsContainer = document.getElementById('drawerBenefits');
+      benefitsContainer.innerHTML = '';
+      data.benefits.forEach(benefit => {
+        const li = document.createElement('li');
+        li.className = "flex items-start gap-3 animate-fade-in";
+        li.innerHTML = `
+          <svg class="w-5 h-5 text-spa-warmGold shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>${benefit}</span>
+        `;
+        benefitsContainer.appendChild(li);
+      });
+
+      // Show Drawer & Backdrop smoothly
+      drawer.classList.remove('translate-x-full');
+      backdrop.classList.remove('opacity-0', 'pointer-events-none');
+      backdrop.classList.add('opacity-100');
+    }
+
+    function closeRitual() {
+      // Hide Drawer & Backdrop smoothly
+      drawer.classList.add('translate-x-full');
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    // Reservation Handler Toast Demo
+    function bookSelected() {
+      const selectedRitual = document.getElementById('drawerTitle').innerText;
+      closeRitual();
+      
+      const toast = document.getElementById('statusToast');
+      document.getElementById('toastMessage').innerText = `Successfully reserved space for: ${selectedRitual}!`;
+      
+      // Toast Slide In
+      toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      // Toast Slide Out
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
